@@ -1,6 +1,6 @@
 # order-generator (ACA Job)
 
-Generador de órdenes para FarmAhorra con decremento local de stock y `quantity` en [1,2].
+Generador de órdenes para FarmAhorra con decremento local de stock y quantity.
 
 ## Variables de entorno necesarias
 - FARMAHORRA_BASE_URL
@@ -15,9 +15,3 @@ Generador de órdenes para FarmAhorra con decremento local de stock y `quantity`
 - REQUEST_TIMEOUT (default 15)
 - REFRESH_CATALOG_EVERY (default 0)
 - SEQ_START=<último YYYYY>
-
-# Construccion de la imagen con docker build -t mongesam/order-generator:v1.0 .
-# Push de la imagen a DockerHub docker push mongesam/order-generator:v1.0
-
-# Crear job en Azure a partir de esta imagen. 
-# Ajustar variables de entorno y correr job desde la Interfaz de Azure.
