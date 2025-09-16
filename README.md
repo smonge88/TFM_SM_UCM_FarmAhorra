@@ -430,7 +430,7 @@ pero aquí se encuentran guardados en la carpeta _notebooks_.
 * 00_farmahorra_raw: ingesta desde Cosmos (Mongo API) -> guarda Delta en farma.raw.*.
 * 01_farmahorra_bronze: creación de la tabla base de órdenes, removiendo duplicados y validando tipos de datos. -> farma.bronze.*.
 * 02_farmahorra_silver: limpieza de las tablas eliminando columnas innecesarias y registros nulos. -> farma.silver.*.
-* 03_farmahorra_gold: creación de tablas y vistas agregadas enfocadas en KPIs de negocio.
+* 03_farmahorra_gold: creación de tablas y vistas agregadas enfocadas en KPIs de negocio-> farma.gold.*.
 
 Los cuatro Notebooks son activados en secuencia a través de un Job manual de Databricks.
 
