@@ -172,7 +172,7 @@ Para conectar la base de datos en MongoDB con CosmosDB, debe hacerse lo siguient
 hacer un _dump_ de uno de los catálogos
 (reemplazar farma_00X por el id de Farmacia correspondiente):
 
-
+    ```
     $DumpDir = "C:\temp\dump_catalog_farma_00X_$(Get-Date -Format yyyyMMdd_HHmm)"
     New-Item -ItemType Directory -Force -Path $DumpDir | Out-Null
     mongodump `
@@ -180,13 +180,14 @@ hacer un _dump_ de uno de los catálogos
       --db ndc_db `
       --collection catalog_farma_003 `
       --out $DumpDir
+    ```
 
 3. Esto devuelve un path temporal donde se hizo el dump del catálogo. Anotarlo.
 
 4. Luego, por cada _dump_, realizar un _restore_ por catálago. 
 En $DumpDir usar el path temporal, devuelto del paso anterior.
 
-
+    ```
     $DumpDir    = "C:\temp\dump_catalog_farma_003_20250908_1017"
     $SrvUri     = 'mongodb+srv://mongodb-products.global.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000'
     $CosmosUser = 'user'          # ingresar usuario con el que se creó la base de datos Azure CosmosDB
@@ -200,6 +201,7 @@ En $DumpDir usar el path temporal, devuelto del paso anterior.
       --nsTo   "ndc_db.catalog_farma_003" `
       --drop `
       "$DumpDir\ndc_db\catalog_farma_003.bson"
+    ```
 
 5. Para verificar que la conexión de la base de datos se haya hecho correctamente,
 establecer una conexión a través de MongoDB Compass con la base de datos de CosmosDB. 
@@ -244,24 +246,28 @@ Además, expone un endpoint para agregar catálogos de todas las farmacias y dev
 En Azure, las variables de entorno son las siguientes:
 * PHARMACIES (JSON):
 
-
+    ```
     {"farma_001":"https://container-farma-001.purpledesert-b43a4980.eastus.azurecontainerapps.io/", 
      "farma_002":"https://container-farma-002.purpledesert-b43a4980.eastus.azurecontainerapps.io/", 
      "farma_003":"https://container-farma-003.purpledesert-b43a4980.eastus.azurecontainerapps.io/"}
+    ```
 
 Estas URLs son tomadas de cada ACA creada por farmacia, en la sección de Overview.
 * MONGO_URI: 
 
-
+    ```
     mongodb+srv://USER:PASSWORD@mongodb-products.global.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retryWrites=false&maxIdleTimeMS=120000&authSource=admin
+    ```
 * MONGO_DB:
 
-
+    ```
     fa_db
+    ```
 * MONGO_COLLECTION:
 
-
+    ```
     orders_farmahorra
+    ```
 
 **requirements.txt**
 
@@ -386,9 +392,9 @@ llamada adlsfarmahorra y en la misma región del workspace de Databricks.
 2. Creación del container principal, llamado datalake y que se encuentra
 en esta URL:
 
-
+    ```
     abfss://datalake@adlsfarmahorra.dfs.core.windows.net/
-
+    ```
 
 ### Creación del Workspace de Azure Databricks (Premium)
 
