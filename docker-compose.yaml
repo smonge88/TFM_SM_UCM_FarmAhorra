@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+
+  farma_001:
+    build:
+      context: ./apis/farmacia_api
+    ports:
+      - "8001:8000"
+    environment:
+      - ID_FARMACIA=farma_001
+      - MONGO_URI=mongodb://host.docker.internal:27017/
+    restart: always
+
+  farma_002:
+    build:
+      context: ./apis/farmacia_api
+    ports:
+      - "8002:8000"
+    environment:
+      - ID_FARMACIA=farma_002
+      - MONGO_URI=mongodb://host.docker.internal:27017/
+    restart: always
+
+  farma_003:
+    build:
+      context: ./apis/farmacia_api
+    ports:
+      - "8003:8000"
+    environment:
+      - ID_FARMACIA=farma_003
+      - MONGO_URI=mongodb://host.docker.internal:27017/
+    restart: always
+
+  farmahorra:
+    build: ./apis/farmahorra_api
+    container_name: farmahorra
+    depends_on:
+      - farma_001
+      - farma_002
+      - farma_003
+    ports:
+      - "8080:8080"
+    environment:
+      MONGO_URI: "mongodb://host.docker.internal:27017/"
+      MONGO_DB: "fa_db"
+      MONGO_COLLECTION: "orders_farmahorra"
+      PHARMACIES: >-
+        {"farma_001":"http://farma_001:8000",
+         "farma_002":"http://farma_002:8000",
+         "farma_003":"http://farma_003:8000"}
+
