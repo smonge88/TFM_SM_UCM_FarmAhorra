@@ -390,8 +390,8 @@ En Azure, las variables de entorno son las siguientes:
 
 Se siguen estos pasos:
 1. Creación de la Storage Account con Hierarchical Namespace habilitado,
-llamada adlsfarmahorra y en la misma región del workspace de Databricks.
-2. Creación del container principal, llamado datalake y que se encuentra
+cuyo nombre es _adlsfarmahorr_a y en la misma región del workspace de Databricks.
+2. Creación del container principal, llamado _datalake_ y que se encuentra
 en esta URL:
 
     ```
@@ -403,26 +403,26 @@ en esta URL:
 Se siguen estos pasos:
 1. Creación de Azure Databricks Service 
 en el plan Premium (necesario para Unity Catalog).
-2. Uso un Resource Group dedicado.
+2. Un Resource Group dedicado es necesario.
 
 ### Requerimientos para acceder al Data Lake desde Databricks
 
 Se requiere lo siguiente:
-1. Crear una User Assigned Managed Identity en Azure, llamada sc_farma_adls.
-2. En la Storage Account (adlsfarmahorra), asignarle a esa identidad 
+1. Crear una User Assigned Managed Identity en Azure, llamada _sc_farma_adls_.
+2. En la Storage Account (_adlsfarmahorra_), asignarle a esa identidad 
 el rol de Storage Blob Data Contributor.
 3. En Unity Catalog, crear el Storage Credential apuntando a esa identidad.
 4. Crear la External Location apuntando al container del Data Lake, usando el URL ya mostrado.
 
 ### Creación del catálogo y capas
 
-Desde la pestaña de Catalog, crear el catálogo llamado farma, 
+Desde la pestaña de Catalog, crear el catálogo llamado _farma_, 
 el cual se relaciona con la external location del paso anterior.
 
 Dentro de farma, construir manualmente los schemas de raw, bronze, silver y gold.
 
 De esta forma, los notebooks pueden usar directamente rutas como farma.<schema>.<tabla> 
-y escribir en el Data Lake sin montar DBFS manualmente.
+y escribir en el Data Lake sin necesidad de ingresar un DBFS manualmente.
 
 ### Notebooks del pipeline
 
@@ -441,12 +441,15 @@ Los cuatro Notebooks son activados en secuencia a través de un Job manual de Da
 Algunos puntos adicionales relevantes:
 * Para correr tanto los Notebooks como el Job, se puede crear un Cluster
 asignándole ciertos recursos, o correrlo en _Serverless_.
-* En el notebook 00_farmahorra_raw rellenar los widgets para conectar a Cosmos (API MongoDB),
-usando estos datos de órdenes:
+* En el notebook _00_farmahorra_raw_, se deben rellenar estos widgets para poder conectarse a Cosmos (API MongoDB):
 
 **COSMOS_URI**
 
+    ```
     mongodb+srv://mongodb-products.global.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000
+    ```
 
-**COSMOS_USER y COSMOS_PASS**: usuario y contraseña con la que monté el MONGO API en CosmosDB,
+**COSMOS_USER y COSMOS_PASS**: 
+
+Corresponden al usuario y contraseña usados para crear el MONGO API en CosmosDB,
 y que se utilizó en los módulos anteriores.
