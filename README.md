@@ -445,9 +445,9 @@ asignándole ciertos recursos, o correrlo en _Serverless_.
 
 **COSMOS_URI**
 
-    ```
+    
     mongodb+srv://mongodb-products.global.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000
-    ```
+    
 
 **COSMOS_USER y COSMOS_PASS**: 
 
