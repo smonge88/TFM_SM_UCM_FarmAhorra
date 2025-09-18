@@ -206,7 +206,7 @@ En $DumpDir usar el path temporal, devuelto del paso anterior.
     ```
 
 5. Para verificar que la conexión de la base de datos se haya hecho correctamente,
-establecer una conexión a través de MongoDB Compass con la base de datos de CosmosDB. 
+establecer una conexión a través de MongoDB Compass con la base de datos de CosmosDB y revisar los distintos sets de datos.
 6. Usar el Mongo_URI que se puede ver en los _connections strings_ de la configuración
 de la base de datos en Azure.
 
