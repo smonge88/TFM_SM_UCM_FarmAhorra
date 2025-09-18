@@ -300,7 +300,7 @@ para generar lotes de órdenes sintéticas a través de FarmAhorra.
 
 Los archivos contenidos dentro de la carpeta _jobs/order_generator/src_ son los siguientes:
 
-    ├── src/ # Scripts principales del pipeline
+    ├── src/ 
     │ ├── catalog_client.py
     │ ├── config.py
     │ ├── init.py
@@ -310,7 +310,7 @@ Los archivos contenidos dentro de la carpeta _jobs/order_generator/src_ son los 
 
 * config.py: 
 
-Carga la configuración desde variables de entorno (función Config.from_env())
+Carga la configuración desde variables de entorno (función _Config.from_env()_)
 * catalog_client.py: 
 
 Cliente HTTP para descargar y normalizar catálogos de las farmacias.
@@ -318,9 +318,9 @@ Devuelve un pool por farmacia con {package_ndc_11, stock}.
 
 * order_builder.py: 
 
-Construye el payload de una orden a partir del pool local, 
+Construye el _payload_ de una orden a partir del pool local, 
 eligiendo aleatoriamente la farmacia, la cantidad y el producto.
-Genera external_order_id y expone apply_local_decrement para 
+Genera _external_order_id_ y expone _apply_local_decrement_ para 
 descontar stock local si la orden fue aceptada.
 
 * runner.py
@@ -336,12 +336,12 @@ Orquesta y organiza las funciones anteriores.
 
 **requirements.txt**
 
-Lista todas las dependencias necesarias (requests en este caso), 
+Lista todas las dependencias necesarias (_requests_ en este caso), 
 las cuales se instalan automáticamente al construir la imagen Docker.
 
 **Dockerfile**
 
-Define cómo se construye la imagen de la Job.
+Define cómo se construye la imagen del Job.
 
 **Construcción de la imagen manualmente**
 
