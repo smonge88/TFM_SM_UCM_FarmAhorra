@@ -85,6 +85,7 @@ la definición del microservicio Farmacia API, encargado de exponer el catálogo
 las órdenes de cada farmacia simulada.
 
 **farma_api.py**
+
 Define la API principal con FastAPI.
 * Expone el catálogo de productos de una farmacia (/catalog/products). 
 * Permite obtener un producto específico por NDC de 11 dígitos (/catalog/products/{ndc}). 
@@ -93,7 +94,7 @@ Define la API principal con FastAPI.
 
 **routes_orders.py**
 Define el router de órdenes con endpoints para:
-* POST /orders: crear una orden, valida stock y calcula totales.
+* POST /orders: crea una orden, valida stock y calcula totales.
 * GET /orders: lista órdenes confirmadas con filtros y paginación.
 * GET /orders/{order_id}: consulta una orden puntual. 
 * Cada orden se guarda en una colección orders_<farmacia_id> de MongoDB.
@@ -157,8 +158,9 @@ donde van a correr cada farmacia, son las siguientes:
     farma_001, farma_002 o farma_003 -> según corresponda
 * MONGO_URI: 
 
-
+    ```
     mongodb+srv://USER:PASSWORD@mongodb-products.global.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retryWrites=false&maxIdleTimeMS=120000&authSource=admin
+    ```
 
 ---
 ## Conexión de base de datos MongoDB con CosmosDB
